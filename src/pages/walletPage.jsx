@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchUserWallet, depositFundsApi, withdrawFundsApi } from '../services/wallet-service';
-
-export const WalletPage = () => {
+const WalletPage = function () {
   const queryClient = useQueryClient();
 
   const [activeModal, setActiveModal] = useState(null);
@@ -209,15 +208,14 @@ export const WalletPage = () => {
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
                       <span
-                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${
-                          tx.type === 'deposit'
-                            ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                            : tx.type === 'escrow_release'
+                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider ${tx.type === 'deposit'
+                          ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                          : tx.type === 'escrow_release'
                             ? 'bg-[#EEF7F5] text-brand-success border border-brand-success/20'
                             : tx.type === 'platform_fee'
-                            ? 'bg-amber-50 text-amber-700 border border-amber-200'
-                            : 'bg-gray-100 text-gray-600 border border-gray-200'
-                        }`}
+                              ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                              : 'bg-gray-100 text-gray-600 border border-gray-200'
+                          }`}
                       >
                         {tx.type}
                       </span>
@@ -226,9 +224,8 @@ export const WalletPage = () => {
                       {tx.contract?.title || tx.reference || 'Wallet Operation'}
                     </td>
                     <td
-                      className={`whitespace-nowrap px-6 py-4 text-right font-bold ${
-                        tx.direction === 'credit' ? 'text-brand-success' : 'text-ink'
-                      }`}
+                      className={`whitespace-nowrap px-6 py-4 text-right font-bold ${tx.direction === 'credit' ? 'text-brand-success' : 'text-ink'
+                        }`}
                     >
                       {tx.direction === 'credit' ? '+' : '-'}${tx.amount.toFixed(2)}
                     </td>
@@ -251,7 +248,7 @@ export const WalletPage = () => {
           {activeModal === 'deposit' ? (
             /* Compact Checkout Modal */
             <div className="w-full max-w-md bg-white rounded-2xl border border-cream-200 shadow-2xl overflow-hidden animate-fadeIn my-4">
-              
+
               {/* Header Title Bar */}
               <div className="px-5 py-4 border-b border-cream-100 flex items-center justify-between">
                 <div>
@@ -263,8 +260,8 @@ export const WalletPage = () => {
                     <span className="material-symbols-outlined text-[12px]">shield</span>
                     Escrow Protected
                   </div>
-                  <button 
-                    onClick={closeModal} 
+                  <button
+                    onClick={closeModal}
                     className="text-gray-400 hover:text-ink cursor-pointer border-0 bg-transparent flex items-center p-0.5 ml-1"
                   >
                     <span className="material-symbols-outlined text-lg">close</span>
@@ -439,4 +436,4 @@ export const WalletPage = () => {
   );
 };
 
-export default WalletPage;
+export default WalletPage
